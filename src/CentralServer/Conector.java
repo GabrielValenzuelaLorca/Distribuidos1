@@ -19,6 +19,9 @@ public class Conector {
             System.out.println(mensaje);
             salida = new DataOutputStream(socket.getOutputStream());
             salida.writeUTF("Good Dog");
+
+            entrada.close();
+            salida.close();
             socket.close();
         }catch (Exception e){
 
@@ -26,3 +29,4 @@ public class Conector {
 
     }
 }
+
