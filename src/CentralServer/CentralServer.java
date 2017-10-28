@@ -9,10 +9,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class CentralServer {
     static List<Distrito> distritos = new ArrayList<Distrito>();
     static Conector c;
     static String serv="[SERVIDOR CENTRAL]";
+    static List<Cliente> clientes = new ArrayList<Cliente>();
 
     public static class menu implements Runnable{
 
@@ -38,7 +39,6 @@ public class Main {
             distrito = new Distrito(nombre,ip_multi,puerto_multi,ip_recep,puerto_recep);
             datos.close();
             return distrito;
-
 
         }
 
@@ -83,6 +83,7 @@ public class Main {
             hebra_menu.start();
 
         }catch (Exception e){
+            System.out.println("Error al ejecutar las hebras");
             e.printStackTrace();
         }
         //c = new Conector();
