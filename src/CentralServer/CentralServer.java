@@ -11,8 +11,8 @@ import java.util.List;
 
 public class CentralServer {
     static List<Distrito> distritos = new ArrayList<Distrito>();
-    static Conector c;
-    static String serv="[SERVIDOR CENTRAL]";
+    static Conector conector;
+    static String serv="[SERVIDOR CENTRAL] ";
     static List<Cliente> clientes = new ArrayList<Cliente>();
 
     public static class menu implements Runnable{
@@ -70,20 +70,28 @@ public class CentralServer {
     public static class servidor implements Runnable{
 
         public void run(){
-
+            conector = new Conector();
+            conector.iniciar();
         }
     }
 
     public static void main(String[] args) {
 
         try{
-            Thread hebra_menu = new Thread(new menu());
+            boolean flag=true;
             Thread hebra_server = new Thread(new servidor());
+            Thread hebra_menu = new Thread(new menu());
             hebra_server.start();
             hebra_menu.start();
+            while (flag){
+                if (!hebra_menu.isAlive()){
+                    hebra_server.interrupt();
+                    System.out.println("Me salí perro");
+                    flag=false;
+                }
+            }
 
         }catch (Exception e){
-            System.out.println("Error al ejecutar las hebras");
             e.printStackTrace();
         }
         //c = new Conector();
