@@ -49,14 +49,9 @@ public class CentralServer {
                 boolean flag=true;
                 while (flag) {
                     System.out.println(serv + " (1) AGREGAR DISTRITO");
-                    System.out.println(serv + " (2) SALIR\n>");
                     opcion = br.readLine();
                     if ("1".equals(opcion)) {
                         distritos.add(agregar_distrito());
-                    } else if ("2".equals(opcion)) {
-                        br.close();
-                        flag=false;
-                        //Falta cerrar cada cosa
                     } else {
                         System.out.println("Ingrese una opcion valida");
                     }
@@ -68,10 +63,19 @@ public class CentralServer {
     }
 
     public static class servidor implements Runnable{
-
+        Cliente cliente;
         public void run(){
-            conector = new Conector();
-            conector.iniciar();
+            try {
+                conector = new Conector("Cliente");
+
+                while (true) {
+                    cliente = conector.leerCliente();
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -83,19 +87,10 @@ public class CentralServer {
             Thread hebra_menu = new Thread(new menu());
             hebra_server.start();
             hebra_menu.start();
-            while (flag){
-                if (!hebra_menu.isAlive()){
-                    hebra_server.interrupt();
-                    System.out.println("Me salí perro");
-                    flag=false;
-                }
-            }
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        //c = new Conector();
-        //c.iniciar();
     }
 
 }

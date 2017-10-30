@@ -1,8 +1,6 @@
 package CentralServer;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -10,39 +8,39 @@ public class Conector {
     String serv="[SERVIDOR CENTRAL] ";
     ServerSocket server;
     Socket socket;
-    int puerto=9000;
-    DataOutputStream salida;
+    int puerto;
     BufferedReader entrada;
 
-    public void iniciar(){
-        try{
-            server = new ServerSocket(puerto);
-            while (true) {
-                System.out.println(serv + "Esperando Conexion de Cliente...");
-                socket = server.accept();
-
-                /*Modificar
-                entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String mensaje = entrada.readLine();
-                System.out.println(mensaje);
-                salida = new DataOutputStream(socket.getOutputStream());
-                salida.writeUTF("Good Dog");
-
-                entrada.close();
-                salida.close();
-                socket.close();
-                */
-            }
-        }catch (Exception e){
-            e.printStackTrace();
+    public Conector(String tipo) throws IOException {
+        if ("Cliente".equals(tipo)){
+            puerto = 9000;
         }
-    }
-    public void terminar(){
-        try{
-
-        }catch (Exception e){
-            e.printStackTrace();
+        else if ("Distrito".equals(tipo)){
+            //puerto igual a pene
         }
+        server = new ServerSocket(puerto);
     }
+
+    public Cliente leerCliente() throws IOException {
+        String ip,distrito;
+        Cliente cliente;
+
+        System.out.println(serv + "Esperando Conexion de Cliente...");
+        socket = server.accept();
+
+        entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        ip = String.valueOf(socket.getRemoteSocketAddress());
+        distrito = entrada.readLine().trim();
+
+        entrada.close();
+        socket.close();
+        System.out.println("ip: "+ip+" distrito: "+distrito);
+        cliente = new Cliente(ip,distrito);
+
+        return cliente;
+    }
+
+
+
 }
 
