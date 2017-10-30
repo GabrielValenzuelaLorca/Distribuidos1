@@ -1,10 +1,12 @@
 package CentralServer;
 
+import java.net.InetAddress;
+
 public class Cliente {
-    String ip;
+    InetAddress ip;
     String distrito;
 
-    public Cliente(String ip,String distrito){
+    public Cliente(InetAddress ip, String distrito){
         this.ip=ip;
         this.distrito=distrito;
     }
@@ -13,11 +15,11 @@ public class Cliente {
         this.distrito=distrito;
     }
 
-    public String getIp() {
+    public InetAddress getIp() {
         return ip;
     }
 
-    public void setIp(String ip) {
+    public void setIp(InetAddress ip) {
         this.ip = ip;
     }
 

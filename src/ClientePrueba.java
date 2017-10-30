@@ -1,31 +1,38 @@
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
 
-import static java.lang.Thread.sleep;
+import static java.net.InetAddress.getByName;
 
 public class ClientePrueba {
     public static void main(String[] args) {
-        String linea;
-        Socket socket;
-        BufferedReader entrada;
         try {
-            socket = new Socket("127.0.0.1",9000);
-            DataOutputStream salida = new DataOutputStream(socket.getOutputStream());
-            entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            //salida.writeUTF("192.168.1.1\n");
-            salida.writeUTF("Trost\n");
-            salida.close();
-            entrada.close();
+            // get a datagram socket
+            DatagramSocket socket = new DatagramSocket();
+            // send request
+            byte[] buf = new byte[256];
+            String envio = "Trost";
+            buf = envio.getBytes();
+            InetAddress address = getByName("127.0.0.0");
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 9000);
+            socket.send(packet);
+            /*
+            // get response
+            packet = new DatagramPacket(buf, buf.length);
+            socket.receive(packet);
+
+            // display response
+            String received = new String(packet.getData());
+            System.out.println("Quote of the Moment: " + received);
+*/
             socket.close();
-        } catch (UnknownHostException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
 
     }
 }

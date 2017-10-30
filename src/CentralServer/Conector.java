@@ -1,15 +1,15 @@
 package CentralServer;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 
 public class Conector {
     String serv="[SERVIDOR CENTRAL] ";
-    ServerSocket server;
-    Socket socket;
+    DatagramSocket socket;
+    byte[] buf = new byte[256];
+    DatagramPacket packet;
     int puerto;
-    BufferedReader entrada;
+
 
     public Conector(String tipo) throws IOException {
         if ("Cliente".equals(tipo)){
@@ -18,22 +18,31 @@ public class Conector {
         else if ("Distrito".equals(tipo)){
             //puerto igual a pene
         }
-        server = new ServerSocket(puerto);
     }
 
+
     public Cliente leerCliente() throws IOException {
-        String ip,distrito;
+        String distrito, entrada;
+        InetAddress ip;
         Cliente cliente;
 
         System.out.println(serv + "Esperando Conexion de Cliente...");
-        socket = server.accept();
 
-        entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        ip = String.valueOf(socket.getRemoteSocketAddress());
-        distrito = entrada.readLine().trim();
+        socket = new DatagramSocket(puerto);
+        packet = new DatagramPacket(buf, buf.length);
+        socket.receive(packet);
 
-        entrada.close();
+        entrada = new String(packet.getData());
+
+        ip = packet.getAddress();
+        int port = packet.getPort();
+        distrito=entrada.trim();
+        //ENVIO DE PAQUETE DE RESPUESTA
+        /*packet = new DatagramPacket(buf, buf.length, address, port);
+        socket.send(packet);
+        */
         socket.close();
+
         System.out.println("ip: "+ip+" distrito: "+distrito);
         cliente = new Cliente(ip,distrito);
 

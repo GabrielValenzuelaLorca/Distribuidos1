@@ -70,7 +70,6 @@ public class CentralServer {
 
                 while (true) {
                     cliente = conector.leerCliente();
-
                 }
 
             } catch (IOException e) {
