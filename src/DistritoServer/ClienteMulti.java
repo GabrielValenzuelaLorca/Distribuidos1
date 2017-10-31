@@ -1,28 +1,25 @@
 package DistritoServer;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
-import java.net.SocketPermission;
 import java.util.*;
+import java.net.*;
+
 
 public class ClienteMulti {
     static String ip;
     static String nombre;
     static DistritoServer distrito;
     static List<Titan> titanes = new ArrayList<Titan>();
-    static Multicast multicast;
     static ArrayList<ArrayList<String>> titanescapturados = new ArrayList<ArrayList<String>>();
     static ArrayList<ArrayList<String>> titanesasesinados = new ArrayList<ArrayList<String>>();
+
     public void Cliente(String ip, DistritoServer distrito,String nombre) {
         this.ip = ip;
         this.distrito = distrito;
         this.nombre=nombre;
     }
+
     public static class actualizartitanes implements Runnable {
 
         public void run() {
@@ -30,9 +27,14 @@ public class ClienteMulti {
                 while (true) {
                     String ipmulti = distrito.ip_multi;
                     int portmulti=distrito.puerto_multi;
-                    multicast=new Multicast(portmulti,ipmulti);
-                    String mensaje=multicast.recibe();
-
+                    MulticastSocket socket = new MulticastSocket(portmulti);
+                    socket.joinGroup(InetAddress.getByName(ipmulti));
+                    byte[] buffer = new byte[1000];
+                    DatagramPacket packet= new DatagramPacket(buffer,buffer.length);
+                    socket.receive(packet);
+                    socket.close();
+                    String mensaje= new String(buffer);
+                    //Obtener datos de titan colosal
                 }
 
             } catch (IOException e) {
@@ -73,10 +75,9 @@ public class ClienteMulti {
             }
         }
     }
-    public static Titan buscar_titan(int id) throws IOException {
-        ArrayList<String> titanencontrado = new ArrayList<String>();
-        Titan titan=null;
 
+    public static Titan buscar_titan(int id) throws IOException {
+        Titan titan=null;
         for (Iterator<Titan> iter = titanes.listIterator(); iter.hasNext(); ) {
             Titan a = iter.next();
             if (a.id==id) {
@@ -86,10 +87,9 @@ public class ClienteMulti {
         return titan;
     }
 
-
-
     public static void main(String[] args) {
         try {
+
             int port = distrito.puerto_recep;
             String address = distrito.ip_recep;
             Thread hebra_titanes = new Thread(new actualizartitanes());
@@ -121,7 +121,6 @@ public class ClienteMulti {
                 //DISTRITO
             } else if ("3".equals(opcion)) {
                 //CAPTURAR
-
                 BufferedReader data = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println(nombre +"Ingresar ID del Titan");
                 int id = Integer.valueOf(data.readLine());
