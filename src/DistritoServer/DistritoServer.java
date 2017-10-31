@@ -21,21 +21,20 @@ public class DistritoServer {
         this.puerto_recep=puerto_recep;
 
     }
+    public static Titan agregar_titan() throws IOException {
+        String nombretitan,tipo;
+        int id;
+        BufferedReader datos = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("AGREGAR TITAN");
+        System.out.println(nombre + "Nombre Titan\n>");
+        nombretitan = datos.readLine();
+        System.out.println(nombre + "Tipo\n>");
+        tipo = datos.readLine();
+        Titan titan = new Titan(nombretitan,tipo,1);
+        datos.close();
+        return titan;
+    }
     public static class menu implements Runnable{
-
-        public static Titan agregar_titan() throws IOException {
-            String nombretitan,tipo;
-            int id;
-            BufferedReader datos = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("AGREGAR TITAN");
-            System.out.println(nombre + "Nombre Titan\n>");
-            nombretitan = datos.readLine();
-            System.out.println(nombre + "Tipo\n>");
-            tipo = datos.readLine();
-            Titan titan = new Titan(nombretitan,tipo,1);
-            datos.close();
-            return titan;
-        }
 
         public void run(){
             try {
@@ -85,13 +84,13 @@ public class DistritoServer {
             Thread hebra_menu = new Thread(new menu());
             hebra_server.start();
             hebra_menu.start();
-            while (flag){
-                if (!hebra_menu.isAlive()){
-                    hebra_server.interrupt();
-                    System.out.println("Me salí perro");
-                    flag=false;
+                while (flag){
+                    if (!hebra_menu.isAlive()){
+                        hebra_server.interrupt();
+                        System.out.println("Me salí perro");
+                        flag=false;
+                    }
                 }
-            }
 
         }catch (Exception e){
             e.printStackTrace();
