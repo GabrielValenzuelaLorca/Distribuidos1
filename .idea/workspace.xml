@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7ac20633-8d83-4dc8-94e4-4c061555c2fc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CentralServer/CentralServer.java" afterPath="$PROJECT_DIR$/src/CentralServer/CentralServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ClientePrueba.java" afterPath="$PROJECT_DIR$/src/ClientePrueba.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,15 +14,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CentralServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CentralServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CentralServer/CentralServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="86" column="46" lean-forward="false" selection-start-line="86" selection-start-column="46" selection-end-line="86" selection-end-column="46" />
+            <state relative-caret-position="18">
+              <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
               <folding>
                 <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
                 <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
                 <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+                <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+                <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
                 <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
                 <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
               </folding>
@@ -35,11 +35,10 @@
       <file leaf-file-name="Cliente.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CentralServer/Cliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+            <state relative-caret-position="144">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
-                <element signature="e#352#353#0" expanded="true" />
-                <element signature="e#377#378#0" expanded="true" />
+                <element signature="method#Cliente#0;class#Cliente#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -48,10 +47,10 @@
       <file leaf-file-name="Distrito.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CentralServer/Distrito.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
+            <state relative-caret-position="396">
               <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -60,21 +59,22 @@
       <file leaf-file-name="Conector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CentralServer/Conector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="67" column="52" lean-forward="true" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
+            <state relative-caret-position="252">
+              <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
               <folding>
                 <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+                <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
                 <element signature="method#leerId#0;class#Conector#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientePrueba.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClientePrueba.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ClientePrueba.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+            <state relative-caret-position="216">
+              <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -111,13 +111,13 @@
         <option value="$PROJECT_DIR$/src/CentralServer/Distrito.java" />
         <option value="$PROJECT_DIR$/src/CentralServer/Conector.java" />
         <option value="$PROJECT_DIR$/src/CentralServer/Cliente.java" />
-        <option value="$PROJECT_DIR$/src/ClientePrueba.java" />
         <option value="$PROJECT_DIR$/src/CentralServer/CentralServer.java" />
+        <option value="$PROJECT_DIR$/src/ClientePrueba.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1304" />
+    <option name="x" value="62" />
     <option name="y" value="-11" />
     <option name="width" value="1305" />
     <option name="height" value="780" />
@@ -326,7 +326,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1304" y="-11" width="1305" height="780" extended-state="6" />
+    <frame x="62" y="-11" width="1305" height="780" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -336,7 +336,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5026861" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32882884" sideWeight="0.4973139" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3243243" sideWeight="0.4973139" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -374,6 +374,8 @@
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
           </folding>
@@ -385,8 +387,7 @@
         <state relative-caret-position="270">
           <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
+            <element signature="method#Cliente#0;class#Cliente#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -396,7 +397,7 @@
         <state relative-caret-position="576">
           <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -417,6 +418,7 @@
           <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
           <folding>
             <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
             <element signature="method#leerId#0;class#Conector#0" expanded="false" />
           </folding>
         </state>
@@ -430,6 +432,8 @@
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
           </folding>
@@ -441,8 +445,7 @@
         <state relative-caret-position="270">
           <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
+            <element signature="method#Cliente#0;class#Cliente#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -452,7 +455,7 @@
         <state relative-caret-position="576">
           <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -473,6 +476,7 @@
           <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
           <folding>
             <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
             <element signature="method#leerId#0;class#Conector#0" expanded="false" />
           </folding>
         </state>
@@ -486,6 +490,8 @@
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
           </folding>
@@ -497,8 +503,7 @@
         <state relative-caret-position="378">
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
+            <element signature="method#Cliente#0;class#Cliente#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -508,7 +513,7 @@
         <state relative-caret-position="414">
           <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -529,6 +534,7 @@
           <caret line="56" column="66" lean-forward="false" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
           <folding>
             <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
             <element signature="method#leerId#0;class#Conector#0" expanded="false" />
           </folding>
         </state>
@@ -542,6 +548,8 @@
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
           </folding>
@@ -553,8 +561,7 @@
         <state relative-caret-position="378">
           <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
+            <element signature="method#Cliente#0;class#Cliente#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -564,7 +571,7 @@
         <state relative-caret-position="54">
           <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -585,6 +592,7 @@
           <caret line="46" column="41" lean-forward="false" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
           <folding>
             <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
             <element signature="method#leerId#0;class#Conector#0" expanded="false" />
           </folding>
         </state>
@@ -598,6 +606,8 @@
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
           </folding>
@@ -609,8 +619,7 @@
         <state relative-caret-position="36">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
+            <element signature="method#Cliente#0;class#Cliente#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -620,7 +629,7 @@
         <state relative-caret-position="72">
           <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,6 +640,7 @@
           <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
             <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
             <element signature="method#leerId#0;class#Conector#0" expanded="false" />
           </folding>
         </state>
@@ -644,6 +654,8 @@
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
           </folding>
@@ -655,7 +667,7 @@
         <state relative-caret-position="72">
           <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -666,6 +678,7 @@
           <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding>
             <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
             <element signature="method#leerId#0;class#Conector#0" expanded="false" />
           </folding>
         </state>
@@ -679,6 +692,8 @@
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
           </folding>
@@ -690,7 +705,7 @@
         <state relative-caret-position="72">
           <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -701,6 +716,7 @@
           <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="27" />
           <folding>
             <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
             <element signature="method#leerId#0;class#Conector#0" expanded="false" />
           </folding>
         </state>
@@ -714,58 +730,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/CentralServer/Conector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
+          <folding>
+            <element signature="method#Conector#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerCliente#0;class#Conector#0" expanded="false" />
+            <element signature="method#leerId#0;class#Conector#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CentralServer/Distrito.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
+        <state relative-caret-position="396">
           <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Distrito#0;class#Distrito#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CentralServer/Cliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CentralServer/Conector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="67" column="52" lean-forward="true" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
-          <folding>
-            <element signature="method#Conector#0;class#Conector#0" expanded="false" />
-            <element signature="method#leerId#0;class#Conector#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ClientePrueba.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Cliente#0;class#Cliente#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CentralServer/CentralServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="86" column="46" lean-forward="false" selection-start-line="86" selection-start-column="46" selection-end-line="86" selection-end-column="46" />
+        <state relative-caret-position="18">
+          <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
           <folding>
             <element signature="class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#agregar_distrito#0;class#menu#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#menu#0;class#CentralServer#0" expanded="false" />
+            <element signature="class#servidor#0;class#CentralServer#0" expanded="false" />
+            <element signature="method#run#0;class#servidor#0;class#CentralServer#0" expanded="false" />
             <element signature="class#id_titanes#0;class#CentralServer#0" expanded="false" />
             <element signature="method#run#0;class#id_titanes#0;class#CentralServer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ClientePrueba.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
