@@ -19,15 +19,8 @@ public class Cliente {
         return ip;
     }
 
-    public void setIp(InetAddress ip) {
-        this.ip = ip;
-    }
-
     public String getDistrito() {
         return distrito;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
-    }
 }

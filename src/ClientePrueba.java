@@ -17,11 +17,12 @@ public class ClientePrueba {
             socket.send(packet);
 
             // get response
+            buf = new byte[256];
             packet = new DatagramPacket(buf, buf.length);
             socket.receive(packet);
 
             // display response
-            String received = new String(packet.getData());
+            String received = new String(packet.getData()).trim();
             System.out.println("Quote of the Moment: " + received);
 
             socket.close();

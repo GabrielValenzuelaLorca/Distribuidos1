@@ -1,19 +1,19 @@
 package CentralServer;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CentralServer {
     static List<Distrito> distritos = new ArrayList<Distrito>();
-    static Conector conector;
+    static Conector conector, conector_id;
     static String serv="[SERVIDOR CENTRAL] ";
     static List<Cliente> clientes = new ArrayList<Cliente>();
+    static int id=0;
 
     public static class menu implements Runnable{
 
@@ -75,9 +75,34 @@ public class CentralServer {
                 conector = new Conector("Cliente");
 
                 while (true) {
-                    cliente = conector.leerCliente();
+                    cliente = conector.leerCliente(distritos);
+                    /*if (cliente not in clientes){
+                        clientes.add(cliente);
+                    }else{
+                        for (int i=0;i<clientes.size()<i++){
+                            if (cliente.equals(clientes.get(i))){
+                                clientes.get(i).cambiar_distrito(cliente.getDistrito);
+                            }
+                        }
+                    }
+                    Ver si cliente esta en la lista*/
                 }
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static class id_titanes implements Runnable{
+        int id_temp;
+        public void run() {
+            try {
+                conector_id = new Conector("Distrito");
+                while (true) {
+                    id_temp=conector_id.leerId(id);
+                    id=id_temp;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -89,12 +114,13 @@ public class CentralServer {
         try{
             Thread hebra_server = new Thread(new servidor());
             Thread hebra_menu = new Thread(new menu());
+            Thread hebra_id = new Thread((new id_titanes()));
             hebra_menu.start();
             while (hebra_menu.isAlive()){
                 continue;
             }
             hebra_server.start();
-
+            hebra_id.start();
 
         }catch (Exception e){
             e.printStackTrace();
