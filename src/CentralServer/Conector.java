@@ -7,7 +7,7 @@ import java.util.List;
 public class Conector {
     String serv="[SERVIDOR CENTRAL] ";
     DatagramSocket socket;
-    byte[] buf = new byte[256];
+    byte[] buf;
     DatagramPacket packet;
     int puerto;
 
@@ -30,6 +30,7 @@ public class Conector {
 
         System.out.println(serv + "Esperando Conexion de Cliente...");
 
+        buf = new byte[256];
         socket = new DatagramSocket(puerto);
         packet = new DatagramPacket(buf, buf.length);
         socket.receive(packet);
@@ -91,6 +92,7 @@ public class Conector {
         InetAddress ip;
         String envio,entrada;
 
+        buf = new byte[256];
         socket = new DatagramSocket(puerto);
         packet = new DatagramPacket(buf, buf.length);
         socket.receive(packet);
@@ -102,15 +104,16 @@ public class Conector {
 
         if ("id".equals(entrada.trim())){
             buf= new byte[256];
-            //envio= (String) (id+1); Convertir entero a String
-            //buf=envio.getBytes();
+            envio= String.valueOf(id+1);
+            buf=envio.getBytes();
             packet = new DatagramPacket(buf, buf.length, ip, port);
             socket.send(packet);
             socket.close();
             return id+1;
         }else{
+            System.out.println("Entre al else");
+            System.out.println(entrada.trim());
             buf= new byte[256];
-            //envio= (String) (id+1); Convertir entero a String
             buf="None".getBytes();
             packet = new DatagramPacket(buf, buf.length, ip, port);
             socket.send(packet);
