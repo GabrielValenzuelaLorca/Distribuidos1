@@ -76,16 +76,17 @@ public class CentralServer {
 
                 while (true) {
                     cliente = conector.leerCliente(distritos);
-                    /*if (cliente not in clientes){
-                        clientes.add(cliente);
-                    }else{
-                        for (int i=0;i<clientes.size()<i++){
-                            if (cliente.equals(clientes.get(i))){
-                                clientes.get(i).cambiar_distrito(cliente.getDistrito);
-                            }
+                    boolean flagg=true;
+                    for (int i=0;i<clientes.size();i++){
+                        if (cliente.equals(clientes.get(i))){
+                            clientes.get(i).cambiar_distrito(cliente.getDistrito());
+                            flagg=false;
                         }
                     }
-                    Ver si cliente esta en la lista*/
+                    if (flagg){
+                        clientes.add(cliente);
+                    }
+
                 }
 
             } catch (IOException e) {

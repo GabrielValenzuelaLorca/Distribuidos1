@@ -10,10 +10,10 @@ public class ClientePrueba {
             DatagramSocket socket = new DatagramSocket();
             // send request
             byte[] buf = new byte[256];
-            String envio = "id";
+            String envio = "Trost";
             buf = envio.getBytes();
             InetAddress address = getByName("127.0.0.0");
-            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 9090);
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 9000);
             socket.send(packet);
 
             // get response
@@ -23,7 +23,7 @@ public class ClientePrueba {
 
             // display response
             String received = new String(packet.getData()).trim();
-            System.out.println("El id a usar es " + received);
+            System.out.println("Mensaje de server" + received);
 
             socket.close();
         } catch (SocketException e) {
