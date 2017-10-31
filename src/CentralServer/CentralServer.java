@@ -1,19 +1,19 @@
 package CentralServer;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CentralServer {
     static List<Distrito> distritos = new ArrayList<Distrito>();
-    static Conector conector;
+    static Conector conector, conector_id;
     static String serv="[SERVIDOR CENTRAL] ";
     static List<Cliente> clientes = new ArrayList<Cliente>();
+    static int id=0;
 
     public static class menu implements Runnable{
 
@@ -37,7 +37,6 @@ public class CentralServer {
             puerto_recep = Integer.valueOf(datos.readLine().trim());
 
             distrito = new Distrito(nombre,ip_multi,puerto_multi,ip_recep,puerto_recep);
-            datos.close();
             return distrito;
 
         }
@@ -45,21 +44,23 @@ public class CentralServer {
         public void run(){
             try {
                 String opcion;
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 boolean flag=true;
+
                 while (flag) {
-                    System.out.println(serv + " (1) AGREGAR DISTRITO");
-                    System.out.println(serv + " (2) SALIR\n>");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println(serv + "(1) AGREGAR DISTRITO");
+                    System.out.println(serv+"(2) TERMINAR\n>");
                     opcion = br.readLine();
                     if ("1".equals(opcion)) {
                         distritos.add(agregar_distrito());
-                    } else if ("2".equals(opcion)) {
-                        br.close();
-                        flag=false;
-                        //Falta cerrar cada cosa
-                    } else {
-                        System.out.println("Ingrese una opcion valida");
                     }
+                    else if ("2".equals(opcion)){
+                        System.out.println(serv+"Fin de agregar distritos");
+                        flag=false;
+                    } else {
+                        System.out.println(serv+"Ingrese una opcion valida");
+                    }
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -68,34 +69,63 @@ public class CentralServer {
     }
 
     public static class servidor implements Runnable{
-
+        Cliente cliente;
         public void run(){
-            conector = new Conector();
-            conector.iniciar();
+            try {
+                conector = new Conector("Cliente");
+
+                while (true) {
+                    cliente = conector.leerCliente(distritos);
+                    boolean flagg=true;
+                    for (int i=0;i<clientes.size();i++){
+                        if (cliente.equals(clientes.get(i))){
+                            clientes.get(i).cambiar_distrito(cliente.getDistrito());
+                            flagg=false;
+                        }
+                    }
+                    if (flagg){
+                        clientes.add(cliente);
+                    }
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static class id_titanes implements Runnable{
+        int id_temp;
+        public void run() {
+            try {
+                conector_id = new Conector("Distrito");
+                while (true) {
+                    id_temp=conector_id.leerId(id);
+                    id=id_temp;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void main(String[] args) {
 
         try{
-            boolean flag=true;
             Thread hebra_server = new Thread(new servidor());
             Thread hebra_menu = new Thread(new menu());
-            hebra_server.start();
+            Thread hebra_id = new Thread((new id_titanes()));
             hebra_menu.start();
-            while (flag){
-                if (!hebra_menu.isAlive()){
-                    hebra_server.interrupt();
-                    System.out.println("Me salí perro");
-                    flag=false;
-                }
+            while (hebra_menu.isAlive()){
+                continue;
             }
+            hebra_server.start();
+            hebra_id.start();
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        //c = new Conector();
-        //c.iniciar();
     }
 
 }
