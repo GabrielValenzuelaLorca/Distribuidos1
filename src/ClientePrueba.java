@@ -15,7 +15,7 @@ public class ClientePrueba {
             InetAddress address = getByName("127.0.0.0");
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 9000);
             socket.send(packet);
-            /*
+
             // get response
             packet = new DatagramPacket(buf, buf.length);
             socket.receive(packet);
@@ -23,7 +23,7 @@ public class ClientePrueba {
             // display response
             String received = new String(packet.getData());
             System.out.println("Quote of the Moment: " + received);
-*/
+
             socket.close();
         } catch (SocketException e) {
             e.printStackTrace();

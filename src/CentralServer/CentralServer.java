@@ -37,7 +37,6 @@ public class CentralServer {
             puerto_recep = Integer.valueOf(datos.readLine().trim());
 
             distrito = new Distrito(nombre,ip_multi,puerto_multi,ip_recep,puerto_recep);
-            datos.close();
             return distrito;
 
         }
@@ -45,16 +44,23 @@ public class CentralServer {
         public void run(){
             try {
                 String opcion;
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 boolean flag=true;
+
                 while (flag) {
-                    System.out.println(serv + " (1) AGREGAR DISTRITO");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println(serv + "(1) AGREGAR DISTRITO");
+                    System.out.println(serv+"(2) TERMINAR\n>");
                     opcion = br.readLine();
                     if ("1".equals(opcion)) {
                         distritos.add(agregar_distrito());
-                    } else {
-                        System.out.println("Ingrese una opcion valida");
                     }
+                    else if ("2".equals(opcion)){
+                        System.out.println(serv+"Fin de agregar distritos");
+                        flag=false;
+                    } else {
+                        System.out.println(serv+"Ingrese una opcion valida");
+                    }
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -81,11 +87,14 @@ public class CentralServer {
     public static void main(String[] args) {
 
         try{
-            boolean flag=true;
             Thread hebra_server = new Thread(new servidor());
             Thread hebra_menu = new Thread(new menu());
-            hebra_server.start();
             hebra_menu.start();
+            while (hebra_menu.isAlive()){
+                continue;
+            }
+            hebra_server.start();
+
 
         }catch (Exception e){
             e.printStackTrace();
