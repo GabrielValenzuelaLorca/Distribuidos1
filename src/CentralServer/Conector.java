@@ -65,8 +65,11 @@ public class Conector {
                     return cliente;
 
                 }else{
-                    System.out.println(serv+"No existe el distrito "+distrito);
-                    socket.close();
+                    System.out.println(serv+"No existe el distrito "+distrito+". La conexion fue rechazada");
+                    buf= new byte[256];
+                    buf="Rechazada".getBytes();
+                    packet = new DatagramPacket(buf, buf.length, ip, port);
+                    socket.send(packet);
                     return null;
                 }
 

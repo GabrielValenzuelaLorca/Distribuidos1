@@ -1,34 +1,30 @@
 package DistritoServer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.net.*;
 
+import static java.net.InetAddress.getByName;
+
 
 public class ClienteMulti {
-    static String ip;
-    static String nombre;
-    static DistritoServer distrito;
+    static String nombre="[Cliente] ";
+    static Distrito distrito;
     static List<Titan> titanes = new ArrayList<Titan>();
     static ArrayList<ArrayList<String>> titanescapturados = new ArrayList<ArrayList<String>>();
     static ArrayList<ArrayList<String>> titanesasesinados = new ArrayList<ArrayList<String>>();
-
-    public void Cliente(String ip, DistritoServer distrito,String nombre) {
-        this.ip = ip;
-        this.distrito = distrito;
-        this.nombre=nombre;
-    }
 
     public static class actualizartitanes implements Runnable {
 
         public void run() {
             try {
                 while (true) {
-                    String ipmulti = distrito.ip_multi;
+                    String ipmulti = distrito.getIp_multi().toString();
                     int portmulti=distrito.puerto_multi;
                     MulticastSocket socket = new MulticastSocket(portmulti);
-                    socket.joinGroup(InetAddress.getByName(ipmulti));
+                    socket.joinGroup(getByName(ipmulti));
                     byte[] buffer = new byte[1000];
                     DatagramPacket packet= new DatagramPacket(buffer,buffer.length);
                     socket.receive(packet);
@@ -42,7 +38,7 @@ public class ClienteMulti {
             }
         }
     }
-    public void cambiar_distrito(DistritoServer distrito) {
+    public void cambiar_distrito(Distrito distrito) {
         this.distrito = distrito;
     }
 
@@ -88,10 +84,64 @@ public class ClienteMulti {
     }
 
     public static void main(String[] args) {
-        try {
+        DatagramPacket packet;
+        DatagramSocket socket;
+        byte[] buf;
+        InetAddress ip_serv;
+        boolean aprobado=true;
+        String ip_recep, ip_multi,entrada, nombre_distrito;
+        int puerto_serv,puerto_recep,puerto_multi;
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
-            int port = distrito.puerto_recep;
-            String address = distrito.ip_recep;
+        try {
+            while (aprobado) {
+                System.out.println(nombre + "Ingresar IP Servidor Central\n>");
+                entrada = bf.readLine();
+                ip_serv = getByName(entrada.trim());
+                System.out.println(nombre + "Ingresar Puerto Servidor Central\n");
+                entrada = bf.readLine();
+                puerto_serv = Integer.parseInt(entrada.trim());
+                System.out.println("\n" + nombre + "Introducir Nombre de Distrito a Investigar, Ej: Trost, Shiganshina\n>");
+                entrada = bf.readLine();
+                nombre_distrito = entrada.trim();
+
+                socket = new DatagramSocket();
+                buf = new byte[256];
+                buf = nombre_distrito.getBytes();
+                packet = new DatagramPacket(buf, buf.length, ip_serv,puerto_serv);
+                socket.send(packet);
+
+                // get response
+                buf = new byte[256];
+                packet = new DatagramPacket(buf, buf.length);
+                socket.receive(packet);
+
+                // display response
+                String respuesta = new String(packet.getData()).trim();
+
+                if ("Rechazada".equals(respuesta)){
+                    socket.close();
+                    System.out.println("Su peticion fue rechazada");
+                }
+                else{
+                    aprobado=false;
+                    String[] parts=respuesta.replace("/","").split(" ");
+                    ip_multi=parts[1].trim();
+                    puerto_multi=Integer.parseInt(parts[2].trim());
+                    ip_recep=parts[3].trim();
+                    puerto_recep=Integer.parseInt(parts[4].trim());
+                    distrito = new Distrito(nombre_distrito,ip_multi,puerto_multi,ip_recep,puerto_recep);
+                }
+
+
+                socket.close();
+            }
+
+            int port = distrito.getPuerto_recep();
+            String address = distrito.getIp_recep().toString();
+
+
+            /*
             Thread hebra_titanes = new Thread(new actualizartitanes());
             hebra_titanes.start();
             boolean flag = true;
@@ -99,7 +149,7 @@ public class ClienteMulti {
             if (!hebra_titanes.isAlive()){
                 flag=false;
             }
-            }*/
+            }
             String opcion;
             int i;
             BufferedReader datos = new BufferedReader(new InputStreamReader(System.in));
@@ -148,6 +198,7 @@ public class ClienteMulti {
             } else {
                 System.out.println("Ingrese una opcion valida");
             }
+            */
         }catch (IOException e){
             e.printStackTrace();
         }
