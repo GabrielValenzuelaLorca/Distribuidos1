@@ -27,13 +27,16 @@ public class ClienteMulti {
                 while (true) {
                     String ipmulti = distrito.ip_multi;
                     int portmulti=distrito.puerto_multi;
-                    MulticastSocket socket = new MulticastSocket(portmulti);
-                    socket.joinGroup(InetAddress.getByName(ipmulti));
+                    MulticastSocket socket = new MulticastSocket(3456);
+                    InetAddress add=InetAddress.getByName("225.4.5.6");
+                    socket.joinGroup(add);
                     byte[] buffer = new byte[1000];
                     DatagramPacket packet= new DatagramPacket(buffer,buffer.length);
                     socket.receive(packet);
                     socket.close();
-                    String mensaje= new String(buffer);
+                    String mensaje= new String(buffer).trim();
+                    System.out.println(mensaje);
+
                     //Obtener datos de titan colosal
                 }
 
