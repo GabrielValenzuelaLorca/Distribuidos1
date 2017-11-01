@@ -15,6 +15,6 @@ Se puede usar "make clean" para limpiar los archivos creados por make.
 
 Se pide que se cree primero un Servidor Central y se le ingresen los valores correspondientes. Posteriormente se deben crear los distritos y finalmente los clientes para no alterar el flujo de las cosas.
 
-El distrito solicitará la dirección IP del Servidor Central para intercambiar datos valiosos.
+El distrito solicitará la dirección IP del Servidor Central para intercambiar datos valiosos. El Servidor Central tiene reservado el puerto 9000 por defecto, y no se puede hacer uso del puerto 9090 ya que se usa con otros fines.
 
 La lista de titanes por distrito es actualizada periodicamente en cortos intervalos de tiempo.
