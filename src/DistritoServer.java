@@ -1,19 +1,29 @@
-package Paquete;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.*;
 import java.util.*;
 import static java.net.InetAddress.getByName;
 
+class Titan1 implements Serializable {
+    int id;
+    String nombre, tipo;
+    public Titan1(int id, String nombre, String tipo){
+
+        this.id=id;
+        this.nombre=nombre;
+        this.tipo=tipo;
+    }
+}
+
 public class DistritoServer {
-    static List<Titan> titanes = new ArrayList<Titan>();
+    static List<Titan1> titanes = new ArrayList<Titan1>();
     static String nombre, ip_multi, ip_recep, ip_sc, dist="[Distrito";
     static int puerto_multi, puerto_recep;
     static boolean tamano=false;
 
-    public static Titan agregar_titan() throws IOException {
+    public static Titan1 agregar_titan() throws IOException {
         String nombretitan,opcion,tipo="";
         int id;
         boolean flag=true;
@@ -59,7 +69,7 @@ public class DistritoServer {
         id=Integer.parseInt(mensaje.trim());
 
 
-        Titan titan = new Titan(id,nombretitan,tipo);
+        Titan1 titan = new Titan1(id,nombretitan,tipo);
         System.out.println("Se ha publicado el titan: "+titan.nombre+"\n**********\nID: "+titan.id+"\nNombre:  "+titan.nombre+"\nTipo: "+titan.tipo+"\n**********");
         String msn="Aparece nuevo Titan! "+titan.nombre+", tipo "+titan.tipo+", ID "+titan.id+".";
         byte[] buffer;
@@ -80,7 +90,7 @@ public class DistritoServer {
             try {
                 String opcion;
                 boolean flag=true;
-                Titan titan;
+                Titan1 titan;
 
                 while (flag) {
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -119,8 +129,8 @@ public class DistritoServer {
                     entrada = new String(packet.getData());
                     String[] entrada_lista=entrada.split(" ");
                     int id = Integer.parseInt(entrada_lista[1].trim());
-                    for (Iterator<Titan> iter = titanes.listIterator(); iter.hasNext(); ) {
-                        Titan a = iter.next();
+                    for (Iterator<Titan1> iter = titanes.listIterator(); iter.hasNext(); ) {
+                        Titan1 a = iter.next();
                         if (a.id==id) {
                             iter.remove();
                         }

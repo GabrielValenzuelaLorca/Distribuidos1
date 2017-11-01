@@ -1,17 +1,67 @@
-package Paquete;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.*;
 import java.net.*;
 
 import static java.net.InetAddress.getByName;
 
 
+class Titan implements Serializable {
+    int id;
+    String nombre, tipo;
+    public Titan( int id,String nombre, String tipo){
+
+        this.id=id;
+        this.nombre=nombre;
+        this.tipo=tipo;
+    }
+}
+
+class Distrito1 {
+    String nombre;
+    int puerto_multi, puerto_recep;
+    InetAddress ip_multi,ip_recep;
+
+    public Distrito1(String nombre, String ip_multi, int puerto_multi, String ip_recep, int puerto_recep){
+        try {
+            this.ip_multi=getByName(ip_multi);
+            this.ip_recep=getByName(ip_recep);
+            this.nombre=nombre;
+            this.puerto_multi=puerto_multi;
+            this.puerto_recep=puerto_recep;
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public InetAddress getIp_multi() {
+        return ip_multi;
+    }
+
+    public InetAddress getIp_recep() {
+        return ip_recep;
+    }
+
+    public int getPuerto_multi() {
+        return puerto_multi;
+    }
+
+    public int getPuerto_recep() {
+        return puerto_recep;
+    }
+
+}
+
+
 public class ClienteMulti {
     static String nombre="[Cliente] ";
-    static Distrito distrito;
+    static Distrito1 distrito;
     static InetAddress ip_serv;
     static int puerto_serv;
     static List<Titan> titanes = new ArrayList<Titan>();
@@ -122,7 +172,7 @@ public class ClienteMulti {
                                 puerto_multi = Integer.parseInt(parts[2].trim());
                                 ip_recep = parts[3].trim();
                                 puerto_recep = Integer.parseInt(parts[4].trim());
-                                distrito = new Distrito(nombre_distrito, ip_multi, puerto_multi, ip_recep, puerto_recep);
+                                distrito = new Distrito1(nombre_distrito, ip_multi, puerto_multi, ip_recep, puerto_recep);
                             }
                         }
 
@@ -273,7 +323,7 @@ public class ClienteMulti {
                     puerto_multi=Integer.parseInt(parts[2].trim());
                     ip_recep=parts[3].trim();
                     puerto_recep=Integer.parseInt(parts[4].trim());
-                    distrito = new Distrito(nombre_distrito,ip_multi,puerto_multi,ip_recep,puerto_recep);
+                    distrito = new Distrito1(nombre_distrito,ip_multi,puerto_multi,ip_recep,puerto_recep);
                 }
 
 
