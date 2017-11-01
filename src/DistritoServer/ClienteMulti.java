@@ -29,21 +29,30 @@ public class ClienteMulti {
 
                     socket = new MulticastSocket(distrito.getPuerto_multi());
                     socket.joinGroup(distrito.getIp_multi());
-                    buffer = new byte[1000];
+                    buffer = new byte[10000];
                     packet= new DatagramPacket(buffer,buffer.length);
                     socket.receive(packet);
                     socket.close();
                     String mensaje= new String(packet.getData()).trim();
 
-                    //FALTA CORROBORAR EL TIPO DE MENSAJE PARA MOSTRAR
-
-                    String[] lista=mensaje.split("-");
-                    for (int i=0;i<lista.length;i++){
-                        String[] elem=lista[i].split(" ");
-                        Titan nuevo_titan= new Titan(Integer.parseInt(elem[0].trim()),elem[1].trim(),elem[2].trim());
-                        if (buscar_titan(nuevo_titan.id)==null){
-                            titanes.add(nuevo_titan);
+                    if ("%".equals(mensaje.substring(0,1))){
+                        List<Titan> nuevos = new ArrayList<Titan>();
+                        String[] lista=mensaje.substring(1,mensaje.length()).split("-");
+                        if (mensaje.length()>1){
+                            for (int i=0;i<lista.length;i++){
+                                String[] elem=lista[i].split(" ");
+                                Titan nuevo_titan= new Titan(Integer.parseInt(elem[0].trim()),elem[1].trim(),elem[2].trim());
+                                nuevos.add(nuevo_titan);
+                            }
+                            titanes=nuevos;
                         }
+                        else{
+                            titanes=new ArrayList<Titan>();
+                        }
+
+
+                    }else{
+                        System.out.println(mensaje);
                     }
 
                 }
@@ -100,12 +109,12 @@ public class ClienteMulti {
                             buf = new byte[256];
                             packet = new DatagramPacket(buf, buf.length);
                             socket.receive(packet);
+                            socket.close();
 
                             // display response
                             String respuesta = new String(packet.getData()).trim();
 
                             if ("Rechazada".equals(respuesta)) {
-                                socket.close();
                                 System.out.println("Su peticion fue rechazada");
                             } else {
                                 aprobado = false;
@@ -115,7 +124,6 @@ public class ClienteMulti {
                                 ip_recep = parts[3].trim();
                                 puerto_recep = Integer.parseInt(parts[4].trim());
                                 distrito = new Distrito(nombre_distrito, ip_multi, puerto_multi, ip_recep, puerto_recep);
-                                socket.close();
                             }
                         }
 
@@ -126,12 +134,7 @@ public class ClienteMulti {
                         Titan titan = buscar_titan(id);
                         if (titan!=null && ("Normal".equals(titan.tipo)||"Cambiante".equals(titan.tipo))){
                             agregar_titan_capturado(titan);
-                            socket = new DatagramSocket();
-                            buf = new byte[256];
-                            buf = String.valueOf(id).getBytes();
-                            packet = new DatagramPacket(buf, buf.length,distrito.getIp_recep(),distrito.getPuerto_recep());
-                            socket.send(packet);
-                            socket.close();
+                            enviar_titan(titan.id,0,titan.nombre,titan.tipo);
                         }
                         else{
                             System.out.println(nombre+"Ingrese un titan valido");
@@ -145,12 +148,7 @@ public class ClienteMulti {
                         Titan titan = buscar_titan(id);
                         if (titan!=null && ("Normal".equals(titan.tipo)||"Excentrico".equals(titan.tipo))){
                             agregar_titan_asesinado(titan);
-                            socket = new DatagramSocket();
-                            buf = new byte[256];
-                            buf = String.valueOf(id).getBytes();
-                            packet = new DatagramPacket(buf, buf.length,distrito.getIp_recep(),distrito.getPuerto_recep());
-                            socket.send(packet);
-                            socket.close();
+                            enviar_titan(titan.id,1,titan.nombre,titan.tipo);
                         }
                         else{
                             System.out.println(nombre+"Ingrese un titan valido");
@@ -182,6 +180,7 @@ public class ClienteMulti {
         titancapturado.add(nombretitan);
         titancapturado.add(tipo);
         titancapturado.add(id);
+        titancapturado.add(distrito.nombre);
         titanescapturados.add(titancapturado);
     }
 
@@ -193,6 +192,7 @@ public class ClienteMulti {
         titanasesinado.add(nombretitan);
         titanasesinado.add(tipo);
         titanasesinado.add(id);
+        titanasesinado.add(distrito.nombre);
         titanesasesinados.add(titanasesinado);
     }
 
@@ -205,6 +205,27 @@ public class ClienteMulti {
             }
         }
         return titan;
+    }
+
+    public static void enviar_titan(int id, int flag, String nombre, String tipo){
+        DatagramSocket socket;
+        DatagramPacket packet;
+        byte[] buf;
+        String envio;
+        try {
+            socket = new DatagramSocket();
+            buf = new byte[1000];
+            envio = String.valueOf(flag)+" "+String.valueOf(id)+" "+nombre+" "+tipo;
+            buf = envio.getBytes();
+            packet = new DatagramPacket(buf, buf.length, distrito.getIp_recep(), distrito.getPuerto_recep());
+            socket.send(packet);
+            socket.close();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -238,12 +259,12 @@ public class ClienteMulti {
                 buf = new byte[256];
                 packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
+                socket.close();
 
                 // display response
                 String respuesta = new String(packet.getData()).trim();
 
                 if ("Rechazada".equals(respuesta)){
-                    socket.close();
                     System.out.println("Su peticion fue rechazada");
                 }
                 else{
@@ -257,12 +278,12 @@ public class ClienteMulti {
                 }
 
 
-                socket.close();
+
             }
 
-            //Thread hebra_titanes = new Thread(new actualizartitanes());
+            Thread hebra_titanes = new Thread(new actualizartitanes());
             Thread hebra_menu = new Thread(new menu());
-            //hebra_titanes.start();
+            hebra_titanes.start();
             hebra_menu.start();
 
 
