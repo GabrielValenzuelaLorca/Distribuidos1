@@ -31,9 +31,20 @@ public class ClienteMulti {
                     buffer = new byte[1000];
                     packet= new DatagramPacket(buffer,buffer.length);
                     socket.receive(packet);
-                    String mensaje= new String(packet.getData());
-                    //Obtener datos de titan colosal
                     socket.close();
+                    String mensaje= new String(packet.getData()).trim();
+
+                    //FALTA CORROBORAR EL TIPO DE MENSAJE PARA MOSTRAR
+
+                    String[] lista=mensaje.split("-");
+                    for (int i=0;i<lista.length;i++){
+                        String[] elem=lista[i].split(" ");
+                        Titan nuevo_titan= new Titan(Integer.parseInt(elem[0].trim()),elem[1].trim(),elem[2].trim());
+                        if (buscar_titan(nuevo_titan.id)==null){
+                            titanes.add(nuevo_titan);
+                        }
+                    }
+
                 }
 
             } catch (IOException e) {
@@ -69,7 +80,6 @@ public class ClienteMulti {
                     if ("1".equals(opcion)) {
                         for (int i = 0; i < titanes.size(); i++) {
                             System.out.println(titanes.get(i).id + " " + titanes.get(i).nombre + " " + titanes.get(i).tipo);
-                            //VER QUE WEA EL ENVIO
                         }
 
                     } else if ("2".equals(opcion)) {
@@ -133,7 +143,7 @@ public class ClienteMulti {
                         int id = Integer.valueOf(datos.readLine());
                         Titan titan = buscar_titan(id);
                         if (titan!=null && ("Normal".equals(titan.tipo)||"Excentrico".equals(titan.tipo))){
-                            agregar_titan_capturado(titan);
+                            agregar_titan_asesinado(titan);
                             socket = new DatagramSocket();
                             buf = new byte[256];
                             buf = String.valueOf(id).getBytes();
@@ -163,7 +173,6 @@ public class ClienteMulti {
         }
     }
 
-
     public static void agregar_titan_capturado(Titan titan) throws IOException {
         ArrayList<String> titancapturado = new ArrayList<String>();
         String nombretitan=titan.nombre;
@@ -174,6 +183,7 @@ public class ClienteMulti {
         titancapturado.add(id);
         titanescapturados.add(titancapturado);
     }
+
     public static void agregar_titan_asesinado(Titan titan) throws IOException {
         ArrayList<String> titanasesinado = new ArrayList<String>();
         String nombretitan = titan.nombre;
@@ -183,17 +193,6 @@ public class ClienteMulti {
         titanasesinado.add(tipo);
         titanasesinado.add(id);
         titanesasesinados.add(titanasesinado);
-    }
-
-    public static void eliminar_titan(int id) throws IOException {
-        for (Iterator<Titan> iter = titanes.listIterator(); iter.hasNext(); ) {
-            Titan a = iter.next();
-            if (a.id==id) {
-
-                iter.remove();
-            }
-        }
-
     }
 
     public static Titan buscar_titan(int id) throws IOException {
