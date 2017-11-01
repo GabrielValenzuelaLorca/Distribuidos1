@@ -1,7 +1,7 @@
 # Tarea 1 Distrubuidos
 ## Integrantes: 
-## -Giorgio Pellizzari
-## -Gabriel Valenzuela
+## - Giorgio Pellizzari Águila 
+## - Gabriel Valenzuela Lorca
 
 Para compilar los archivos, se debe situar en la carpeta "src" por consola y ejecutar el comando "make".
 
