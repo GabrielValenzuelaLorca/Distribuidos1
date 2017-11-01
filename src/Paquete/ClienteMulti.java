@@ -1,4 +1,4 @@
-package DistritoServer;
+package Paquete;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -82,7 +82,6 @@ public class ClienteMulti {
                     System.out.println(nombre + "(4) ASESINAR TITAN");
                     System.out.println(nombre + "(5) LISTAR TITANES CAPTURADOS");
                     System.out.println(nombre + "(6) LISTAR TITANES ASESINADOS");
-                    System.out.println(nombre + "(7) SALIR\n>");
 
                     opcion = datos.readLine();
 

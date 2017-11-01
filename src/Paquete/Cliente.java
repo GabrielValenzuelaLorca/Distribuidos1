@@ -1,4 +1,4 @@
-package CentralServer;
+package Paquete;
 
 import java.net.InetAddress;
 

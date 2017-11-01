@@ -1,4 +1,4 @@
-package DistritoServer;
+package Paquete;
 
 import java.io.IOException;
 import java.net.*;

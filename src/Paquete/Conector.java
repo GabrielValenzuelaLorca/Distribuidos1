@@ -1,4 +1,4 @@
-package CentralServer;
+package Paquete;
 
 import java.io.*;
 import java.net.*;

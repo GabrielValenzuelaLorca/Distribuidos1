@@ -1,6 +1,4 @@
-package DistritoServer;
-import CentralServer.Conector;
-import CentralServer.Distrito;
+package Paquete;
 
 import java.io.BufferedReader;
 import java.io.IOException;
